@@ -1,5 +1,5 @@
 # AdventOfCode
-My repo for the [advent of code](https://adventofcode.com/) competitions hosted every year.
+My repo for the [advent of code](https://adventofcode.com/) competitions hosted every year. Languages used for each year:
 - 2023: Python
 - 2024: Golang
 
