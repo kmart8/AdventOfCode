@@ -16,12 +16,12 @@ func absInt(num int) int {
 	return num
 }
 
-func parseInput() ([1000]int, [1000]int) {
+func parseInput() ([1000]int, [1000]int, map[int]int) {
 	file, _ := os.Open("./inputs/day1.txt")
 
-	// initialize 2 arrays
 	col1 := [1000]int{}
 	col2 := [1000]int{}
+	frequency := make(map[int]int)
 	i := 0
 
 	scanner := bufio.NewScanner(file)
@@ -32,43 +32,32 @@ func parseInput() ([1000]int, [1000]int) {
 		num2, _ := strconv.Atoi(fields[1])
 		col1[i] = num1
 		col2[i] = num2
+		frequency[num2]++
 		i += 1
 	}
-	return col1, col2
+	return col1, col2, frequency
 }
 
-func part1() int {
-	col1, col2 := parseInput()
+func day1() (int, int) {
+	col1, col2, frequency := parseInput()
 
 	slices.Sort(col1[:])
 	slices.Sort(col2[:])
 
 	sum := 0
-
-	for i := 0; i < len(col1); i++ {
-		sum += absInt(col2[i] - col1[i])
-	}
-
-	return sum
-}
-
-func part2() int {
-	col1, col2 := parseInput()
-	frequency := make(map[int]int)
 	simScore := 0
 
-	for _, value := range col2 {
-		frequency[value]++
+	for i := 0; i < len(col1); i++ {
+		num1, num2 := col1[i], col2[i]
+		sum += absInt(num2 - num1)
+		simScore += num1 * frequency[num1]
 	}
 
-	for _, value := range col1 {
-		simScore += value * frequency[value]
-	}
-	return simScore
-
+	return sum, simScore
 }
 
 func main() {
-	fmt.Println(part1())
-	fmt.Println(part2())
+	ans1, ans2 := day1()
+	fmt.Println(fmt.Sprintf("The answer to day 1 part 1 is %d", ans1))
+	fmt.Println(fmt.Sprintf("The answer to day 1 part 2 is %d", ans2))
 }
