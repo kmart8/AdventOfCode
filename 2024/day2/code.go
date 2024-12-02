@@ -29,9 +29,7 @@ func isSafe(report []string) bool {
 		rI, _ := strconv.Atoi(report[i])
 		rI1, _ := strconv.Atoi(report[i-1])
 
-		if rI == rI1 {
-			break
-		} else if absInt(rI-rI1) > 3 {
+		if rI == rI1 || absInt(rI-rI1) > 3 {
 			break
 		} else if rI > rI1 {
 			dir++
