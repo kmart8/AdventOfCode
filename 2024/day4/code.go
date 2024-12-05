@@ -27,6 +27,16 @@ func buildMatrix() [140][]string {
 	return matrix
 }
 
+func hasXmas(x int, y int, dx int, dy int, matrix [140][]string) bool {
+	for k, v := range "XMAS" {
+		newX, newY := x+(dx*k), y+(dy*k)
+		if !valid(newX, newY) || matrix[newY][newX] != string(v) {
+			return false
+		}
+	}
+	return true
+}
+
 func findXmas(direction [2][]int, x int, y int, matrix [140][]string) []string {
 	curr := []string{}
 	for _, coord := range direction {
@@ -56,21 +66,12 @@ func p1() int {
 
 	ans := 0
 	for y, row := range matrix {
-		for x, v := range row {
-			if v == "X" {
-				for _, coord := range directions {
-					dx := coord[0]
-					dy := coord[1]
-					newX, newY := x+dx, y+dy
-					if valid(newX, newY) && matrix[newY][newX] == "M" {
-						newX, newY := newX+dx, newY+dy
-						if valid(newX, newY) && matrix[newY][newX] == "A" {
-							newX, newY := newX+dx, newY+dy
-							if valid(newX, newY) && matrix[newY][newX] == "S" {
-								ans += 1
-							}
-						}
-					}
+		for x := range row {
+			for _, coord := range directions {
+				dx := coord[0]
+				dy := coord[1]
+				if hasXmas(x, y, dx, dy, matrix) {
+					ans += 1
 				}
 			}
 		}
