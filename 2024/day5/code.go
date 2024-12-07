@@ -113,6 +113,6 @@ func s(row []int, order map[int][]int) []int {
 
 func main() {
 	ans1, ans2 := day5()
-	fmt.Println(fmt.Sprintf("The answer to day 4 part 1 is %d", ans1))
-	fmt.Println(fmt.Sprintf("The answer to day 4 part 2 is %d", ans2))
+	fmt.Println(fmt.Sprintf("The answer to day 5 part 1 is %d", ans1))
+	fmt.Println(fmt.Sprintf("The answer to day 5 part 2 is %d", ans2))
 }
