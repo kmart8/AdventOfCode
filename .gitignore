@@ -1,2 +1,8 @@
-# 2024 input files
+# input files
 2024/inputs/
+
+# utils
+/utils
+
+# random
+2024/day6/code.txt
