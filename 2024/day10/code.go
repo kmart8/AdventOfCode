@@ -12,7 +12,7 @@ func valid(x int, y int, sizex int, sizey int) bool {
 }
 
 func buildMatrix() [][]int {
-	file, _ := os.Open("./inputs/day10t.txt")
+	file, _ := os.Open("./inputs/day10.txt")
 	scanner := bufio.NewScanner(file)
 	matrix := [][]int{}
 	i := 0
