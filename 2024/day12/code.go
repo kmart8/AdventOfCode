@@ -54,7 +54,7 @@ func bfs(i int, j int, matrix [][]string, seen map[Position]bool) (int, int, int
 	for len(q) > 0 {
 		node := q[0]
 		q = q[1:]
-		for i, _ := range directions {
+		for i := range directions {
 			s1 := directions[i%4]
 			s2 := directions[(i+1)%4]
 			s3 := []int{s1[0] + s2[0], s1[1] + s2[1]}
