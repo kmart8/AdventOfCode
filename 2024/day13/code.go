@@ -50,7 +50,7 @@ func solveEqn(button Button, p2 bool) (int, bool) {
 	}
 }
 
-func part1() (int, int) {
+func day13() (int, int) {
 	file, _ := os.Open("./inputs/day13.txt")
 	scanner := bufio.NewScanner(file)
 	button := Button{}
@@ -89,5 +89,7 @@ func part1() (int, int) {
 }
 
 func main() {
-	fmt.Println(part1())
+	ans1, ans2 := day13()
+	fmt.Println(fmt.Sprintf("The answer to day 13 part 1 is %d", ans1))
+	fmt.Println(fmt.Sprintf("The answer to day 13 part 2 is %d", ans2))
 }
