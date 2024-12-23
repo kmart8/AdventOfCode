@@ -31,17 +31,22 @@ func solveEqn(button Button, p2 bool) (int, bool) {
 	Dx := px*d - c*py
 	Dy := a*py - b*px
 
+	if Dx%D != 0 {
+		return 0, false
+	}
+	if Dy%D != 0 {
+		return 0, false
+	}
+
 	aC := Dx / D
 	bC := Dy / D
-	check := (aC*a+bC*c == px && aC*b+bC*d == py)
-	if aC > 100 || bC > 100 || aC < 0 || bC < 0 {
+	if p2 {
+		return (3 * aC) + bC, false
+	}
+	if aC > 100 || bC > 100 {
 		return 0, false
 	} else {
-		if check {
-			return (3 * aC) + bC, false
-		} else {
-			return 0, false
-		}
+		return (3 * aC) + bC, false
 	}
 }
 
@@ -49,8 +54,8 @@ func part1() (int, int) {
 	file, _ := os.Open("./inputs/day13.txt")
 	scanner := bufio.NewScanner(file)
 	button := Button{}
-	tCost1 := 0
-	tCost2 := 0
+	var tCost1 int = 0
+	var tCost2 int = 0
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.Contains(line, "A") {
@@ -63,17 +68,22 @@ func part1() (int, int) {
 			cost1, err1 := solveEqn(button, false)
 			cost2, err2 := solveEqn(button, true)
 			button = Button{}
-			if err1 {
-				continue
-			} else {
+			if !err1 {
 				tCost1 += cost1
 			}
-			if err2 {
-				continue
-			} else {
+			if !err2 {
 				tCost2 += cost2
 			}
 		}
+	}
+	// final iteration
+	cost1, err1 := solveEqn(button, false)
+	cost2, err2 := solveEqn(button, true)
+	if !err1 {
+		tCost1 += cost1
+	}
+	if !err2 {
+		tCost2 += cost2
 	}
 	return tCost1, tCost2
 }
