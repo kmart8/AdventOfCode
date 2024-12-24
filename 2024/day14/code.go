@@ -67,7 +67,6 @@ func p2() int {
 	file, _ := os.Open("./inputs/day14.txt")
 	scanner := bufio.NewScanner(file)
 	matrix := [103][101]string{}
-	fmt.Println(matrix[0][0])
 	robots := []Robot{}
 	for scanner.Scan() {
 		robot := Robot{}
